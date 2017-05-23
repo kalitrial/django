@@ -1,0 +1,55 @@
+blog/
+    admin.py -> where you register models to include in django admin site
+    migrations->dir that will contain migrations of ur application. allow tracking model changes and db synchronization
+    model.py ->data models of your application
+    tests.py -> where you can add tests for your application
+    views.py -> logic of app goes here. Each view receives an HTTP request, processes it and returns a response
+
+Activating application
+    ->in order for django to keep track of our application and be able to create bd tables for its models, we have to activate it
+    ->edit settings.py of the project and add the 'app_name' to the INSTALLED_APPS setting
+
+QuerySet and Manager
+    ->Object-relational Mapper(ORM) -> database abstraction API that lets you create, retrieve, update and delete objects easily
+    Queryset is a collection of objects from your database that can have several filters to limit the results.
+
+    saving
+
+    Post.objects.create(x=y,s=y)
+    Post.save(user)
+
+    Retrieving
+
+    Post.objects.get(x=y)
+    Post.objects.all()
+
+    Filter
+
+    Post.objects.filter(publish__year=2017)
+    Post.objects.filter(publish__year=2017, author__username='admin') or
+    Post.objects.filter(publish__year=2017)\
+                 filter(author__username='admin')
+
+    Using exclude()
+
+    You can exclude results from your QuerySet using the exclude() method of the manager
+
+    Post.objects.filter(publish__year=2017)\
+                .exclude(title__startswith='Why')
+
+    Using Order_by()
+    You can order results by different fields using order_by() method manager
+
+    Post.objects.order_by('title')
+
+    Deleting Objects
+     post = Post.objects.get(id=1)
+     post.delete()
+
+`objects` is the default manager of every model, which retrieves all objects in the database but we can create custom
+    managers for our model
+
+
+
+CSRF(Cross site request forgery) {% csrf_token %} template tag intoduces a hidden field with an auto-generated token to avoid
+cross site request forgery attacks
