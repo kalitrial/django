@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap
+
+sitemaps = {
+    'posts': PostSitemap,
+}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,5 +31,9 @@ urlpatterns = [
         namespace='blog',
         app_name='blog'
     )),
+    # include the required imports and define a dictionary of sitemaps. We define a URL pattern that matches with sitemap.xml
+    # and uses the sitemap view. The sitemaps dictionary is passed to the sitemap view
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
 
 ]

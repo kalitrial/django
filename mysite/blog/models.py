@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from taggit.managers import TaggableManager
 
 # Django creates a table for each model defined in the models.py
 
@@ -12,6 +13,9 @@ class PublishedManager(models.Manager):
                                             .filter(status='published')
 
 class Post(models.Model):
+
+    # Tag manager allows you to add, retrieve and remove tags from Post objects
+    tags = TaggableManager()
 
     def get_absolute_url(self):
         return reverse('blog:post_detail',

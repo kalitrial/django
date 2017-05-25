@@ -53,3 +53,9 @@ QuerySet and Manager
 
 CSRF(Cross site request forgery) {% csrf_token %} template tag intoduces a hidden field with an auto-generated token to avoid
 cross site request forgery attacks
+
+
+SITEMAPS
+
+->A sitemap is a xml file that tells search engines the pages of your website, their relevance and how frequently they are
+updated. By using a sitemap, you help crawlers indexing your website content
